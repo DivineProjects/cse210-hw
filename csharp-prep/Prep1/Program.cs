@@ -5,11 +5,11 @@ class Program
     static void Main(string[] args)
     {
         Console.Write("\nWhat is your first name? ");
-        string fname = Console.ReadLine();
+        string fName = Console.ReadLine();
 
         Console.Write("What is your last name? ");
-        string lname = Console.ReadLine();
+        string lName = Console.ReadLine();
 
-        Console.WriteLine($"\nYour name is {fname}, {lname} {fname}.");
+        Console.WriteLine($"\nYour name is {fName}, {lName} {fName}.");
     }
 }
