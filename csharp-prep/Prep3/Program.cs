@@ -15,7 +15,6 @@ class Program
         {
             count = 1;
             random_number = randomGenerator.Next(1, 100);
-            Console.WriteLine($"Random Number: {random_number}");
             Console.Write("\nWhat is the magic number? ");
             input= Console.ReadLine();
             guess_number = int.Parse(input);
@@ -23,7 +22,6 @@ class Program
             
             while (guess_number != random_number)
             {
-                
                 if (guess_number < random_number)
                 {
                     Console.WriteLine("Higher");
