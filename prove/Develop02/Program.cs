@@ -9,6 +9,7 @@ class Program
         1. Included additional prompt questions
         2. Create a History file and class that captures the per entry Responses
         3. History class saves and loads as a .csv file 
+        4. Is accessed by selecting option 5
      */
     static void Main(string[] args)
     {
@@ -22,7 +23,7 @@ class Program
         History history = new History();
         do
         {
-            Console.WriteLine("\nPlease select one of the following choices \n1. Write \n2. Display \n3. Load \n4. Save \n 5. Read Daily Entries \n6. Quit");
+            Console.WriteLine("\nPlease select one of the following choices \n1. Write \n2. Display \n3. Load \n4. Save \n5. Read Daily Entries \n6. Quit");
             Console.WriteLine("What would you like to do?");
             choice = int.Parse(Console.ReadLine());
 
