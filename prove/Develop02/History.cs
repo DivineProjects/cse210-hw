@@ -23,13 +23,13 @@ public class History
 
             foreach (Entry line in _entries)
             {
-                _text += line._entryText + "|";
+                _text += line._entryText + ",";
             };
 
             using (StreamWriter outputFile = new StreamWriter(filename, true))
             {
 
-                outputFile.WriteLine($"Date: {_date}|{_text}");
+                outputFile.WriteLine($"Date: {_date},{_text}");
             };
 
         }
@@ -46,7 +46,8 @@ public class History
         foreach (string line in lines)
         {
             string[] parts = line.Split(",");
-            foreach (string part in parts){
+            foreach (string part in parts)
+            {
                 Console.WriteLine(part);
             }
         }
