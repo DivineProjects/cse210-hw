@@ -8,6 +8,7 @@ public class Entry
     public string _entryText;
     // instantiate instance of Object of prompt Generator and assign string to promptText
     public PromptGenerator promptGenerator = new PromptGenerator();
+    
     public Entry()
     {
         _date = DateTime.Now.ToString("yyyy-MM-dd");

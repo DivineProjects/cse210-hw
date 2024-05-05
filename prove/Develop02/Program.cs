@@ -4,17 +4,25 @@ using System.Collections.Generic;
 
 class Program
 {
+    /* Creativity and Exceeding Requirements
+        --------------------------------------
+        1. Included additional prompt questions
+        2. Create a History file and class that captures the per entry Responses
+        3. History class saves and loads as a .csv file 
+     */
     static void Main(string[] args)
     {
+        Console.WriteLine("\n=========================================================");
         Console.WriteLine("Welcome to the Journal Program");
+        Console.WriteLine("\n=========================================================");
 
         int choice = 0;
         string input;
         Journal journal = new Journal();
-        // Entry entry1 = new Entry();
+        History history = new History();
         do
         {
-            Console.WriteLine("\nPlease select one of the following choices \n1. Write \n2. Display \n3. Load \n4. Save \n5. Quit");
+            Console.WriteLine("\nPlease select one of the following choices \n1. Write \n2. Display \n3. Load \n4. Save \n 5. Read Daily Entries \n6. Quit");
             Console.WriteLine("What would you like to do?");
             choice = int.Parse(Console.ReadLine());
 
@@ -23,6 +31,7 @@ class Program
                 Entry entry = new Entry();
                 entry.Display();
                 journal.AddEntry(entry);
+                history.AddEntry(entry);
             }
             else if (choice == 2)
             {
@@ -41,15 +50,15 @@ class Program
                 Console.Write("What is the file name: ");
                 input = Console.ReadLine();
                 journal.SaveToFile(input);
+                // Write data to CSV
+                history.WriteToHistory();
+            }
+            else if (choice == 5)
+            {
+                history.Display();
             }
 
-        } while (choice != 5);
-
-
-
-
-
-
+        } while (choice != 6);
 
     }
 }
