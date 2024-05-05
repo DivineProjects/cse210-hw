@@ -11,7 +11,7 @@ class Program
         int choice = 0;
         string input;
         Journal journal = new Journal();
-        Entry entry1 = new Entry();
+        // Entry entry1 = new Entry();
         do
         {
             Console.WriteLine("\nPlease select one of the following choices \n1. Write \n2. Display \n3. Load \n4. Save \n5. Quit");
@@ -20,8 +20,9 @@ class Program
 
             if (choice == 1)
             {
-                entry1.Display();
-                journal.AddEntry(entry1);
+                Entry entry = new Entry();
+                entry.Display();
+                journal.AddEntry(entry);
             }
             else if (choice == 2)
             {

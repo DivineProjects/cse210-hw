@@ -9,7 +9,6 @@ public class Journal
     // Methods
     public void AddEntry(Entry entry)
     {
-        // Entry entry= new Entry();
         _entries.Add(entry);
     }
 
@@ -33,7 +32,6 @@ public class Journal
                 {
                     outputFile.WriteLine($"Date: {line._date} - {line._promptText} \n{line._entryText}\n");
                 };
-
             };
 
             Console.WriteLine("File successfully saved.");
@@ -47,10 +45,9 @@ public class Journal
     public void LoadFromFile(string filename)
     {
         string filePath = filename;
-        string[] lines = System.IO.File.ReadAllLines(filePath);
+        string[] lines = File.ReadAllLines(filename);
         foreach (string line in lines)
         {
-            string[] parts = line.Split("|");
             Console.WriteLine(line);
         }
     }

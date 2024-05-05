@@ -18,6 +18,5 @@ public class Entry
         Console.WriteLine($"{_promptText}");
         _entryText = Console.ReadLine();
         //journal.AddEntry(entry1);
-
     }
 }
