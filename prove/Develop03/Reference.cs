@@ -35,15 +35,15 @@ public class Reference
     {
         if (_endVerse != 0)
         {
-            Console.WriteLine($"{_book} {_chapter}:{_verse}-{_endVerse}");
+            Console.Write($"{_book} {_chapter}:{_verse}-{_endVerse} ");
         }
         else if (_endVerse == _verse)
         {
-            Console.WriteLine($"{_book} {_chapter} {_verse}");
+            Console.Write($"{_book} {_chapter} {_verse} ");
         }
         else
         {
-            Console.WriteLine($"{_book} {_chapter} {_verse}");
+            Console.Write($"{_book} {_chapter} {_verse} ");
         }
     }
 

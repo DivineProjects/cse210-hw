@@ -11,7 +11,7 @@ public class Scripture
     // constructor
     public Scripture(Reference reference, string text)
     {
-        _reference =reference;
+        _reference = reference;
         // convert text to array
         string[] textArray = text.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
         foreach (string wordText in textArray)
@@ -25,41 +25,47 @@ public class Scripture
     public void HideRandomWords(int numberToHide)
     {
         Random random = new Random();
+        _numberToHide = numberToHide;
         List<int> numbers = new List<int>();
-
-        // Checks if the numberToHide does not exceed the total number of words
+        List<int> indexes = Enumerable.Range(0, _words.Count).ToList(); // Create a list of indexes
+        
+        // numberToHide should not exceed the total number of words
         numberToHide = Math.Min(numberToHide, _words.Count);
 
         for (int i = 0; i < numberToHide; i++)
         {
-            int r = random.Next(0, _words.Count()); //generates random numbers in the range [min, max]
-            _words[r].Hide(); // hides word and Replaces itwith ---
+            int randIndex = random.Next(0, indexes.Count);// generates random numbers in the range [min, max]
+            int wordIndex = indexes[randIndex]; // get index in the _words list
+            _words[wordIndex].Hide(); // Hide the word
+            indexes.RemoveAt(randIndex); // Remove the index from the list to avoid repetition
         }
-
+        _reference.GetDsiplayText();
         foreach (var word in _words)
         {
             Console.Write(word.GetDisplayText() + " ");
         }
+
     }
 
     public string GetDisplayText()
     {
-        string displayText = ""; 
+        string displayText = "";
         _reference.GetDsiplayText();
         foreach (var word in _words)
         {
             word.Show();
-            displayText += word.GetDisplayText();
+            displayText += word.GetDisplayText() + " ";
         }
         return displayText;
     }
 
     public bool IsCompletelyHidden()
     {
-        if (_words.Count >= _numberToHide)
+        if (_words.Count > _numberToHide)
         {
             return true;
-        }else
+        }
+        else
         {
             return false;
         }
