@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 public class ReadScripture
 {
@@ -30,7 +32,6 @@ public class ReadScripture
         _verse = Int32.Parse(_verseList[2]);
         _endVerse = Int32.Parse(_verseList[3]);
         _text = _verseList[4];
-
     }
 
     public string GetBook(){
@@ -51,21 +52,5 @@ public class ReadScripture
     public string GetText()
     {
         return _text;
-    }
-
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        ReadScripture readScripture=new ReadScripture();
-        Console.WriteLine(readScripture.GetBook());
-        Console.WriteLine(readScripture.GetChapter());
-        Console.WriteLine(readScripture.GetEndVerse());
-        Console.WriteLine(readScripture.GetVerse());
-        Console.WriteLine(readScripture.GetText());
-
-        
     }
 }

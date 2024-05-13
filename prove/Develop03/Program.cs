@@ -1,16 +1,26 @@
 using System;
+/* >>>>>>>> Showing Creativity and Exceeding Requirements <<<<<<<< 
+    class: ReadScripture.cs
+    functions:
+    -reads scripture details from a seperate data file names data.cs
+    -Gets Book name, Chapter, Verse and End verse
+
+
+
+*/
 
 class Program
 {
     static void Main(string[] args)
     {
-        // Inputs
-        string book = "1 Nephi";
-        int chapter = 3;
-        int verse = 20;
-        int endVerse = 0;
-        string bookVerseText = "And inasmuch as ye shall keep my commandments, ye shall prosper, and shall be led to a land of promise; yea, even a land which I have prepared for you; yea, a land which is choice above all other lands.";
+        // Inputs Verse
+        ReadScripture readScripture=new ReadScripture();
 
+        string book = readScripture.GetBook();
+        int chapter = readScripture.GetChapter();
+        int verse = readScripture.GetVerse();
+        int endVerse =readScripture.GetEndVerse();
+        string bookVerseText =  readScripture.GetText();
 
         //  Declare Objects
         Reference verseReference = new Reference(book, chapter, verse, endVerse);
@@ -22,12 +32,11 @@ class Program
 
         Console.Clear();
         Console.WriteLine(scripture.GetDisplayText());
-        Console.Write("\nInput any Key to Continue / 'Y' to quit: ");
+        Console.Write("\nPress Enter to Continue / 'Y' to quit: ");
         input = Console.ReadLine().ToLower();
-
-        do
+    
+        while ((scripture.IsCompletelyHidden() == true) && input != "y")
         {
-
             Random random = new Random();
             
             int i = random.Next(minWords, maxWords);
@@ -37,9 +46,8 @@ class Program
             input = Console.ReadLine().ToLower();
             maxWords += i;
             minWords += i;
-
-        } while ((scripture.IsCompletelyHidden()==true) && input != "y");
-
+        }
+        
         Console.WriteLine("*** Thank You for Play ***");
 
 
