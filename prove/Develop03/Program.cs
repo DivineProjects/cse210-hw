@@ -3,10 +3,11 @@ using System;
     class: ReadScripture.cs
     functions:
     -reads scripture details from a seperate data file names data.cs
-    -Gets Book name, Chapter, Verse and End verse
-
-
-
+    -Gets Book name, Chapter, Verse and End verse using methods
+    - GetBook()
+    -GetChapter()
+    -GetEndVerse()
+    -GetText()
 */
 
 class Program
@@ -49,7 +50,5 @@ class Program
         }
         
         Console.WriteLine("*** Thank You for Play ***");
-
-
     }
 }
