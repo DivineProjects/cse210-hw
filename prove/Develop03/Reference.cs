@@ -39,11 +39,11 @@ public class Reference
         }
         else if (_endVerse == _verse)
         {
-            Console.Write($"{_book} {_chapter} {_verse} ");
+            Console.Write($"{_book} {_chapter}: {_verse} ");
         }
         else
         {
-            Console.Write($"{_book} {_chapter} {_verse} ");
+            Console.Write($"{_book} {_chapter}: {_verse} ");
         }
     }
 

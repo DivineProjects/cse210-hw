@@ -5,11 +5,11 @@ class Program
     static void Main(string[] args)
     {
         // Inputs
-        string book = "John";
+        string book = "1 Nephi";
         int chapter = 3;
-        int verse = 16;
-        int endVerse = 20;
-        string bookVerseText = "This is a sample text to convert into a list of words.";
+        int verse = 20;
+        int endVerse = 0;
+        string bookVerseText = "And inasmuch as ye shall keep my commandments, ye shall prosper, and shall be led to a land of promise; yea, even a land which I have prepared for you; yea, a land which is choice above all other lands.";
 
 
         //  Declare Objects
@@ -29,9 +29,7 @@ class Program
         {
 
             Random random = new Random();
-            // scripture.GetDisplayText();
-            //Console.WriteLine();
-            // scripture.HideRandomWords(random.Next(numGaps, numberOfHidenWords));
+            
             int i = random.Next(minWords, maxWords);
             Console.Clear();
             scripture.HideRandomWords(i);

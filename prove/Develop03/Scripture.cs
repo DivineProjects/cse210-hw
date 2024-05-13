@@ -13,7 +13,7 @@ public class Scripture
     {
         _reference = reference;
         // convert text to array
-        string[] textArray = text.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+        string[] textArray = text.Split(new char[] { ' ', '\n', '\r','\t' }, StringSplitOptions.RemoveEmptyEntries);
         foreach (string wordText in textArray)
         {
             _words.Add(new Word(wordText));
