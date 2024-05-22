@@ -1,71 +1,49 @@
 using System;
 
-public class ReadScripture
+using System;
+
+public class Person
 {
-    // declare attributes / member variable
-    private string filename = "data.csv";
-    private List<string> _verseList = new List<string>();
-    private string _bookName;
-    private int _chapter;
-    private int _verse;
-    private int _endVerse;
-    private string _text;
+    private string _name;
 
-    //Constructor
-    public ReadScripture()
+    public Person(string name)
     {
-        string[] lines = System.IO.File.ReadAllLines(filename);
-        foreach (string line in lines)
-        {
-            string[] parts = line.Split("|");
-            foreach (string part in parts)
-            {
-                _verseList.Add(part);
-            }
-        }
-
-        // store values in member methods
-        _bookName = _verseList[0];
-        _chapter = Int32.Parse(_verseList[1]);
-        _verse = Int32.Parse(_verseList[2]);
-        _endVerse = Int32.Parse(_verseList[3]);
-        _text = _verseList[4];
-
+        _name = name;
     }
-
-    public string GetBook(){
-        return _bookName;
-    }
-
-    public int GetChapter(){
-        return _chapter;
-    }
-
-    public int GetVerse(){
-        return _verse;
-    }
-    public int GetEndVerse(){
-        return _endVerse;
-    }
-
-    public string GetText()
+    public string GetName()
     {
-        return _text;
+        return _name;
+    }
+}
+
+public class Student : Person
+{
+    private string _number;
+
+    public Student(string name, string number) : base(name)
+    {
+        _number = number;
+    }
+
+    public string GetNumber()
+    {
+        return _number;
     }
 
 }
+
 
 class Program
 {
     static void Main(string[] args)
     {
-        ReadScripture readScripture=new ReadScripture();
-        Console.WriteLine(readScripture.GetBook());
-        Console.WriteLine(readScripture.GetChapter());
-        Console.WriteLine(readScripture.GetEndVerse());
-        Console.WriteLine(readScripture.GetVerse());
-        Console.WriteLine(readScripture.GetText());
 
-        
+
+        Student student = new Student("Brigham", "234");
+        string name = student.GetName();
+        string number = student.GetNumber();
+        Console.WriteLine(name);
+        Console.WriteLine(number);
+
     }
 }
