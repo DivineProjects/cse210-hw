@@ -1,10 +1,11 @@
 using System;
+using System.Threading;
 
 public class Activity
 {
     private string _name;
     private string _description;
-    private int _duration;
+    protected int _duration;
 
     public Activity(string name, string description, int duration)
     {
@@ -15,12 +16,12 @@ public class Activity
 
     public void DisplayStartingMessage()
     {
-        Console.WriteLine($"{_name}: {_description} ({_duration} minutes)");
+        Console.WriteLine($"{_name}: {_description} ({_duration} seconds)");
     }
 
     public void DisplayEndingMessage()
     {
-        Console.WriteLine($"{_name}: {_description} ({_duration} minutes)");
+        Console.WriteLine($"{_name}: {_description} ({_duration} seconds)");
     }
 
     public void showSpinner(int seconds)
