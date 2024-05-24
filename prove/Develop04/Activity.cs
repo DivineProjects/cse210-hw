@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using System.Threading.Tasks.Dataflow;
 
 public class Activity
 {
@@ -16,34 +17,39 @@ public class Activity
 
     public void DisplayStartingMessage()
     {
-        Console.WriteLine($"{_name}: {_description} ({_duration} seconds)");
+        Console.WriteLine($"Welcome to the {_name} Activity)");
     }
 
     public void DisplayEndingMessage()
     {
-        Console.WriteLine($"{_name}: {_description} ({_duration} seconds)");
+        Console.WriteLine($"\nThank You for participating in the {_name} Activity");
     }
 
-    public void showSpinner(int seconds)
+    public void ShowSpinner(int seconds)
     {
-        for (int i = 0; i < seconds; i++)
-        {
-            Console.Write(".");
-            System.Threading.Thread.Sleep(1000);
-            Console.Write("\b \b"); // Erase the + character
-            Console.Write("."); // Replace it with the - character
-        }
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(seconds);
+        string[] spinner = { "/", "-", "|", "-" };
+        int spinnerIndex = 0;
+
         Console.WriteLine();
+        while (DateTime.Now < endTime)
+            {
+                Console.Write(spinner[spinnerIndex]);
+                Thread.Sleep(250); // Spinner update interval
+                Console.Write("\b"); // Backspace to overwrite spinner character
+                spinnerIndex = (spinnerIndex + 1) % spinner.Length;
+            }
     }
 
     public void ShowCountDown(int seconds)
     {
-        for (int i = seconds; i > 0; i--)
+        for (int i = seconds; i > -1; i--)
         {
             Console.Write($"{i} ");
             System.Threading.Thread.Sleep(1000);
+            Console.Write("\b\b"); // Backspace to overwrite number character
         }
-        Console.WriteLine();
     }
 
 
