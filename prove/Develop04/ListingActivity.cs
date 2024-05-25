@@ -4,19 +4,21 @@ using System.Threading;
 
 public class ListingActivity : Activity
 {
-    private List<string> _promptsList;
+    private List<string> _promptsList = new List<string>();
     private int _count;
     
     public ListingActivity(string name, string description): base(name, description)
     {
-        _promptsList = new List<string>
-        {
-            "Who are people that you appreciate?",
-            "What are personal strengths of yours?",
-            "Who are people that you have helped this week?",
-            "When have you felt the Holy Ghost this month?",
-            "Who are some of your personal heroes?"
-        };
+        ReadWriteFiles readPrompts = new ReadWriteFiles("listngPromps.txt");
+        _promptsList  = readPrompts.ReadFromFile();
+        // _promptsList = new List<string>
+        // {
+        //     "Who are people that you appreciate?",
+        //     "What are personal strengths of yours?",
+        //     "Who are people that you have helped this week?",
+        //     "When have you felt the Holy Ghost this month?",
+        //     "Who are some of your personal heroes?"
+        // };
 
         _count = 0;
     }
@@ -37,6 +39,7 @@ public class ListingActivity : Activity
         ShowSpinner(4);
         Console.WriteLine($"You listed {_count} items.");
         ShowSpinner(4);
+        SaveListingResponses(userInputsList) ;
         DisplayEndingMessage();
 
     }
@@ -67,6 +70,13 @@ public class ListingActivity : Activity
 
         return userInputs;
     }
+
+    public void SaveListingResponses(List<string> list)
+    {
+        ReadWriteFiles writePrompts = new ReadWriteFiles("listingResponse.txt");
+        writePrompts.WriteToFile(list);
+    }
+
 
 
 }

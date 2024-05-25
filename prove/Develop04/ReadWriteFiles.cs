@@ -33,6 +33,22 @@ public class ReadWriteFiles
         return _fileLines;
     }
 
+
+    public void WriteToFile( List<string> list)
+    {
+        try
+        {
+            // Save the List<string> to the file
+            File.WriteAllLines(_filename, list);
+            Console.WriteLine("\nList has been saved to " + _filename);
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions that occur during the file write operation
+            Console.WriteLine("An error occurred while saving the file: ");
+        }
+    }
+
     
 
 }
