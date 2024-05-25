@@ -1,20 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Threading; 
 
 public class ListingActivity : Activity
 {
     private List<string> _promptsList;
     private int _count;
-
-    // public ListingActivity(string name, string description, int duration) : base(name, description, duration)
-    // {
-    //     int _count;
-    //     List<string> _promptsList = new List<string>();
-    //     // String[] _promptsList = { "Who are people that you appreciate?","What are personal strengths of yours?","Who are people that you have helped this week?","When have you felt the Holy Ghost this month?","Who are some of your personal heroes?"};
-    // }
-
-    public ListingActivity(string name, string description, int duration)
-        : base(name, description, duration)
+    
+    public ListingActivity(string name, string description): base(name, description)
     {
         _promptsList = new List<string>
         {
@@ -31,6 +24,7 @@ public class ListingActivity : Activity
     public void Run()
     {
         DisplayStartingMessage();
+        SetDuration();
 
         string prompt = GetRandomPrompt();
         Console.WriteLine("Consider the following Prompt: ");
@@ -43,7 +37,6 @@ public class ListingActivity : Activity
         ShowSpinner(4);
         Console.WriteLine($"You listed {_count} items.");
         ShowSpinner(4);
-        Console.WriteLine("Well Done!!!!!");
         DisplayEndingMessage();
 
     }

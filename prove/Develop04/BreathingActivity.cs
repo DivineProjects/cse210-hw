@@ -1,8 +1,9 @@
 using System;
+using System.Threading; 
 
 public class BreathingActivity : Activity
 {
-    public BreathingActivity() : base("Breathing", "\n\nThis activity will help you relax by walking you through breathing in and out slowly. \nClear your mind and focus on your breathing.", 9)
+    public BreathingActivity(string name, string description) : base(name, description)
     {
 
     }
@@ -11,27 +12,27 @@ public class BreathingActivity : Activity
     {
         Console.Clear();
         DisplayStartingMessage();
-
-        Console.Write("\nHow long, seconds would you like for this activity?: ");
-        _duration = int.Parse(Console.ReadLine());
+        SetDuration();
         Console.Write("Get Ready ...");
         ShowSpinner(3);
         // initiate timer
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddSeconds(_duration);
-        // DateTime currentTime = ;
-
-        string[] breathe = { "Breathe in...", "Breathe Out..." };
+        Console.WriteLine("");
+        string[] breathe = { "Breathe in... ", "Breathe Out..." };
         int breatheIndex = 0;
 
         Console.WriteLine();
         while (DateTime.Now < endTime)
         {
-            
+
             Console.Write(breathe[breatheIndex]);
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             ShowCountDown(5);
-            Console.Write("\b\b\b\b\b\b\b\b\b\b\b\b\b"); // Backspace to overwrite spinner character
+            foreach (char c in breathe[breatheIndex])
+            {
+                Console.Write("\b"); // Backspace to overwrite character
+            }
             breatheIndex = (breatheIndex + 1) % breathe.Length;
         }
 
