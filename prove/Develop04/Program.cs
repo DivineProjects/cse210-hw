@@ -25,7 +25,16 @@ class Program
 
             
             Console.Write("Select a choice from the Menu: ");
-            int choice = int.Parse(Console.ReadLine());
+
+            int choice;
+            string input = Console.ReadLine();
+
+            // checks if inoute is an integer
+            if (!(int.TryParse(input, out choice)))
+            {
+                choice = 0;
+            }
+           
 
             if (choice == 4)
             {

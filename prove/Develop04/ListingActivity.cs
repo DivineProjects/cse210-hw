@@ -11,14 +11,7 @@ public class ListingActivity : Activity
     {
         ReadWriteFiles readPrompts = new ReadWriteFiles("listngPromps.txt");
         _promptsList  = readPrompts.ReadFromFile();
-        // _promptsList = new List<string>
-        // {
-        //     "Who are people that you appreciate?",
-        //     "What are personal strengths of yours?",
-        //     "Who are people that you have helped this week?",
-        //     "When have you felt the Holy Ghost this month?",
-        //     "Who are some of your personal heroes?"
-        // };
+        
 
         _count = 0;
     }
@@ -53,9 +46,7 @@ public class ListingActivity : Activity
     private List<string> GetListFromUser()
     {
         List<string> userInputs = new List<string>();
-        // string prompt = GetRandomPrompt();
-        // Console.WriteLine("Consider the following Prompt: ");
-        // Console.WriteLine($"\t---- {prompt} ----");
+        
         DateTime endTime = DateTime.Now.AddSeconds(_duration);
 
         while (DateTime.Now < endTime)
