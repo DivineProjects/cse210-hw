@@ -1,49 +1,40 @@
 using System;
 
-using System;
-
-public class Person
+public abstract class Employee
 {
-    private string _name;
-
-    public Person(string name)
-    {
-        _name = name;
-    }
-    public string GetName()
-    {
-        return _name;
-    }
+    private string employeeName;    
+    public abstract float CalculatePay();
 }
 
-public class Student : Person
+public class HourlyEmployee: Employee
 {
-    private string _number;
+    private float rate = 9f;
+    private float hours = 100f;
 
-    public Student(string name, string number) : base(name)
+    public override float CalculatePay()
     {
-        _number = number;
+        return rate * hours;
     }
 
-    public string GetNumber()
+    public void DisplayPayCheck(Employee e)
     {
-        return _number;
+        float pay = e.CalculatePay();
+        Console.WriteLine(pay);
     }
-
 }
-
 
 class Program
 {
     static void Main(string[] args)
     {
 
+        HourlyEmployee hourlyEmployee = new HourlyEmployee();
+        Console.WriteLine(hourlyEmployee.CalculatePay());   
+    
+        Employee employee = new Employee();
+        Console.WriteLine(employee.CalculatePay());
 
-        Student student = new Student("Brigham", "234");
-        string name = student.GetName();
-        string number = student.GetNumber();
-        Console.WriteLine(name);
-        Console.WriteLine(number);
+        hourlyEmployee.DisplayPayCheck(employee);
 
     }
 }
