@@ -158,13 +158,36 @@ class GoalManager
 
         if (index >= 0 && index < _goals.Count)
         {
+            Goal goal = _goals[index];
+            goal.RecordEvent();
+            // _goals[index].IsComplete();
+            if (goal is CheckListGoal checklistGoal && checklistGoal.IsComplete())
+            {
+                _score += checklistGoal.GetPoints();
+            }
             _score += _goals[index].GetPoints();
-            Console.WriteLine("Event recorded successfully.");
+            Console.WriteLine("\t*Event recorded successfully.");
         }
         else
         {
             Console.WriteLine("Invalid goal number.");
         }
+
+        // if (index >= 0 && index < _goals.Count)
+        // {
+        //     Goal goal = _goals[index];
+        //     goal.RecordEvent();
+        //     if (goal is CheckListGoal checklistGoal && checklistGoal.IsComplete())
+        //     {
+        //         _score += checklistGoal.GetPoints();
+        //     }
+        //     _score += goal.GetPoints();
+        //     Console.WriteLine("Event recorded successfully.");
+        // }
+        // else
+        // {
+        //     Console.WriteLine("Invalid goal number.");
+        // }
     }
 
     private void SaveGoals()

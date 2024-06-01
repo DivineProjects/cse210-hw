@@ -29,11 +29,13 @@ public class SimpleGoal : Goal
 
     public override bool IsComplete()
     {
+         
         return _isComplete = true;
     }
 
     public override int RecordEvent()
     {
+        _isComplete = true;
         return _points;
     }
 

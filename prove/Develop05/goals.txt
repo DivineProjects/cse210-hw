@@ -1,3 +1,5 @@
-0
-SimpleGoal;Running;30 minutes a day;30;False
-ChecklistGoal;Clean Room;clean the roon 3 times this week;40;0;3;500
+214
+SimpleGoal;Running;30 mins daily;70;True
+SimpleGoal;Bath;daily;89;True
+ChecklistGoal;Diggging;garden;11;4;4;100
+EternalGoal;Singign;allday;50
