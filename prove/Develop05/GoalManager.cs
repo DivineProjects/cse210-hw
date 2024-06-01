@@ -6,16 +6,30 @@ class GoalManager
 {
     private List<Goal> _goals;
     private int _score;
+    // private List<Goal> _goals;
+    private List<Achievement> _achievements;
+    // private int _score;
+    private int _level;
+    private int _pointsToNextLevel;
 
     public GoalManager()
     {
         _goals = new List<Goal>();
         _score = 0;
+        // _goals = new List<Goal>();
+        _achievements = new List<Achievement>();
+        // _score = 0;
+        _level = 1;
+        _pointsToNextLevel = 100; // Example 
+
+        InitializeAchievements();
     }
 
     public void Start()
     {
         Console.Clear();
+        // Basic Testing
+        TestGoalManager();
         while (true)
         {
 
@@ -68,6 +82,8 @@ class GoalManager
     private void DisplayPlayerInfo()
     {
         Console.WriteLine($"Your current score: {_score}");
+        Console.WriteLine($"Player's current level: {_level}");
+        Console.WriteLine($"Points to next level: {_pointsToNextLevel - _score}");
     }
 
     private void ListGoalNames()
@@ -160,13 +176,33 @@ class GoalManager
         {
             Goal goal = _goals[index];
             goal.RecordEvent();
+            
+            _score += _goals[index].GetPoints();
+            Console.WriteLine("\t*Event recorded successfully.");
+
+            // /////////////
+            // int pointsEarned = goal.GetPoints();
+            // _score += pointsEarned;
+            // Console.WriteLine($"Event recorded successfully. Points earned: {pointsEarned}");
+
+            // Check for leveling up
+            if (_score >= _pointsToNextLevel)
+            {
+                _level++;
+                _score -= _pointsToNextLevel;
+                _pointsToNextLevel += 300; // Increase threshold for next level
+                Console.WriteLine($"Congratulations! You've leveled up to level {_level}!");
+            }
+            // Additional points for ChecklistGoal completion
             // _goals[index].IsComplete();
             if (goal is CheckListGoal checklistGoal && checklistGoal.IsComplete())
             {
                 _score += checklistGoal.GetPoints();
+                Console.WriteLine($"Bonus points earned: {checklistGoal.GetPoints()}");
             }
-            _score += _goals[index].GetPoints();
-            Console.WriteLine("\t*Event recorded successfully.");
+
+            // Check for achievements
+            CheckAchievements();
         }
         else
         {
@@ -251,4 +287,77 @@ class GoalManager
             Console.WriteLine("No saved goals found.");
         }
     }
+
+   ////// EXTRA ACHIEVEMENT 
+    private void InitializeAchievements()
+    {
+        _achievements.Add(new Achievement("First Goal", "Complete your first goal"));
+        _achievements.Add(new Achievement("Goal Master", "Complete 10 goals"));
+        _achievements.Add(new Achievement("Point Collector", "Earn 500 points"));
+        _achievements.Add(new Achievement("Checkmate", "Complete a checklist goal"));
+        _achievements.Add(new Achievement("Daily Streak", "Complete a goal every day for a week"));
+        // Add more achievements as needed
+    }
+
+    private void CheckAchievements()
+    {
+        foreach (var achievement in _achievements)
+        {
+            if (!achievement.GetIsUnlocked())
+            {
+                switch (achievement.GetName())
+                {
+                    case "First Goal":
+                        if (_goals.Count > 0)
+                            achievement.Unlock();
+                        break;
+                    case "Goal Master":
+                        if (_goals.Count >= 10)
+                            achievement.Unlock();
+                        break;
+                    case "Point Collector":
+                        if (_score >= 500)
+                            achievement.Unlock();
+                        break;
+                    case "Checkmate":
+                        if (_goals.Exists(r => r is CheckListGoal && r.IsComplete()))
+                            achievement.Unlock();
+                        break;
+                    case "Daily Streak":
+                        // Implement streak logic here
+                        break;
+                }
+            }
+        }
+
+
+    }
+
+    private void TestGoalManager()
+    {
+        // Creating some sample goals
+        Goal simpleGoal = new SimpleGoal("Read", "Read a book for 30 minutes", 10);
+        Goal checklistGoal = new CheckListGoal("Workout", "Complete 5 workouts", 20, 5, 50);
+        Goal eternalGoal = new EternalGoal("Meditate", "Meditate every day", 5);
+
+        _goals.Add(simpleGoal);
+        _goals.Add(checklistGoal);
+        _goals.Add(eternalGoal);
+
+        // Simulate some events
+        simpleGoal.RecordEvent();
+        checklistGoal.RecordEvent();
+        checklistGoal.RecordEvent();
+        checklistGoal.RecordEvent();
+        checklistGoal.RecordEvent();
+        checklistGoal.RecordEvent(); // This should mark the checklist goal as complete and give bonus points
+
+        _score += simpleGoal.GetPoints();
+        _score += checklistGoal.GetPoints()* 5 + checklistGoal.GetPoints(); // Accumulating points including bonus
+
+        // Check achievements
+        CheckAchievements();
+    }
+
+    
 }
