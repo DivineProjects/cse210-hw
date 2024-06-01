@@ -5,7 +5,7 @@ public class SimpleGoal : Goal
 
     private bool _isComplete;
 
-    public SimpleGoal(string name, string description, int points): base(name, description, points)
+    public SimpleGoal(string shortName, string description, int points): base(shortName, description, points)
     {
         _isComplete = false;
     }
@@ -32,8 +32,13 @@ public class SimpleGoal : Goal
         return _isComplete = true;
     }
 
-    public override void RecordEvent()
+    public override int RecordEvent()
     {
-        _points = 50;
+        return _points;
+    }
+
+    public void SetCompletionStatus(bool status)
+    {
+        _isComplete = status;
     }
 }

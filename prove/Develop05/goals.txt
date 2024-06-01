@@ -1,0 +1,3 @@
+0
+SimpleGoal;Running;30 minutes a day;30;False
+ChecklistGoal;Clean Room;clean the roon 3 times this week;40;0;3;500
