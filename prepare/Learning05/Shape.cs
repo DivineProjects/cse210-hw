@@ -1,11 +1,11 @@
 using System;
 
-public class Shape
+public abstract class Shape
 {
     private string _color;
 
     // constructor
-    public Shape()
+    public Shape(string color)
     {
         _color = "";
     }
@@ -20,10 +20,10 @@ public class Shape
         return _color;
     }
 
-    // public GetArea()
-    // {
-        
-    // }
+    public abstract double GetArea();
+  
+
+    
 
 
 

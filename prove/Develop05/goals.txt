@@ -1,8 +1,0 @@
-1464
-SimpleGoal;Running;30 mins daily;70;True
-SimpleGoal;Bath;daily;89;True
-ChecklistGoal;Diggging;garden;11;4;4;100
-EternalGoal;Singign;allday;50
-SimpleGoal;Loud;Smell;200;True
-ChecklistGoal;check;fid it;2;0;600;45
-ChecklistGoal;count;couning;750;2;2;40
