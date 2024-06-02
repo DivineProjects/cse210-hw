@@ -20,7 +20,7 @@ class GoalManager
         _achievements = new List<Achievement>();
         // _score = 0;
         _level = 1;
-        _pointsToNextLevel = 100; // Example 
+        _pointsToNextLevel = 300; // Example 
 
         InitializeAchievements();
     }
@@ -28,11 +28,11 @@ class GoalManager
     public void Start()
     {
         Console.Clear();
-        // Basic Testing
-        TestGoalManager();
+        // Check achievements
+        CheckAchievements();
         while (true)
         {
-
+            CheckAchievements();
             Console.WriteLine("\nMenu:");
             Console.WriteLine("1. Display Current Score");
             Console.WriteLine("2. Lists the Names of Each Goal.");
@@ -41,12 +41,13 @@ class GoalManager
             Console.WriteLine("5. Record Event");
             Console.WriteLine("6. Save Goals");
             Console.WriteLine("7. Load Goals");
-            Console.WriteLine("8. Exit");
+            Console.WriteLine("8. List Achievements");
+            Console.WriteLine("9. Exit");
 
             Console.Write("Choose an option: ");
             string input = Console.ReadLine();
             int choice = int.Parse(input);
-
+            
             switch (choice)
             {
                 case 1:
@@ -71,6 +72,9 @@ class GoalManager
                     LoadGoals();
                     break;
                 case 8:
+                    ListAchievements();
+                    break;
+                case 9:
                     return;
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
@@ -83,7 +87,7 @@ class GoalManager
     {
         Console.WriteLine($"Your current score: {_score}");
         Console.WriteLine($"Player's current level: {_level}");
-        Console.WriteLine($"Points to next level: {_pointsToNextLevel - _score}");
+        // Console.WriteLine($"Points to next level: {_pointsToNextLevel - _score}");
     }
 
     private void ListGoalNames()
@@ -176,7 +180,7 @@ class GoalManager
         {
             Goal goal = _goals[index];
             goal.RecordEvent();
-            
+
             _score += _goals[index].GetPoints();
             Console.WriteLine("\t*Event recorded successfully.");
 
@@ -209,29 +213,12 @@ class GoalManager
             Console.WriteLine("Invalid goal number.");
         }
 
-        // if (index >= 0 && index < _goals.Count)
-        // {
-        //     Goal goal = _goals[index];
-        //     goal.RecordEvent();
-        //     if (goal is CheckListGoal checklistGoal && checklistGoal.IsComplete())
-        //     {
-        //         _score += checklistGoal.GetPoints();
-        //     }
-        //     _score += goal.GetPoints();
-        //     Console.WriteLine("Event recorded successfully.");
-        // }
-        // else
-        // {
-        //     Console.WriteLine("Invalid goal number.");
-        // }
     }
 
     private void SaveGoals()
     {
         using (StreamWriter writer = new StreamWriter("goals.txt"))
         {
-            Console.WriteLine(_score);
-            Console.WriteLine(_goals.Count);
             writer.WriteLine(_score);
             foreach (Goal goal in _goals)
             {
@@ -239,6 +226,7 @@ class GoalManager
             }
         }
         Console.WriteLine("Goals saved successfully.");
+    
     }
 
     private void LoadGoals()
@@ -260,13 +248,10 @@ class GoalManager
                     {
                         case "SimpleGoal":
                             goal = new SimpleGoal(parts[1], parts[2], int.Parse(parts[3]));
-                            // ((SimpleGoal)goal).IsComplete()= bool.Parse(parts[4]);
-                            // ((SimpleGoal)goal)._isCompleted = bool.Parse(parts[4]);
                             ((SimpleGoal)goal).SetCompletionStatus(bool.Parse(parts[4]));
                             break;
                         case "ChecklistGoal":
                             goal = new CheckListGoal(parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[5]), int.Parse(parts[6]));
-                            // ((CheckListGoal)goal)._amountCompleted = int.Parse(parts[4]);
                             ((CheckListGoal)goal).SetAmountCompleted(int.Parse(parts[4]));
                             break;
                         case "EternalGoal":
@@ -288,15 +273,21 @@ class GoalManager
         }
     }
 
-   ////// EXTRA ACHIEVEMENT 
+    ////// EXTRA ACHIEVEMENT 
     private void InitializeAchievements()
     {
         _achievements.Add(new Achievement("First Goal", "Complete your first goal"));
-        _achievements.Add(new Achievement("Goal Master", "Complete 10 goals"));
+        _achievements.Add(new Achievement("Goal Master", "Complete 5 goals"));
         _achievements.Add(new Achievement("Point Collector", "Earn 500 points"));
-        _achievements.Add(new Achievement("Checkmate", "Complete a checklist goal"));
-        _achievements.Add(new Achievement("Daily Streak", "Complete a goal every day for a week"));
-        // Add more achievements as needed
+    }
+
+    private void ListAchievements()
+    {
+        Console.WriteLine("\nAchievements:");
+        foreach (var achievement in _achievements)
+        {
+            Console.WriteLine(achievement);
+        }
     }
 
     private void CheckAchievements()
@@ -319,13 +310,6 @@ class GoalManager
                         if (_score >= 500)
                             achievement.Unlock();
                         break;
-                    case "Checkmate":
-                        if (_goals.Exists(r => r is CheckListGoal && r.IsComplete()))
-                            achievement.Unlock();
-                        break;
-                    case "Daily Streak":
-                        // Implement streak logic here
-                        break;
                 }
             }
         }
@@ -333,31 +317,6 @@ class GoalManager
 
     }
 
-    private void TestGoalManager()
-    {
-        // Creating some sample goals
-        Goal simpleGoal = new SimpleGoal("Read", "Read a book for 30 minutes", 10);
-        Goal checklistGoal = new CheckListGoal("Workout", "Complete 5 workouts", 20, 5, 50);
-        Goal eternalGoal = new EternalGoal("Meditate", "Meditate every day", 5);
 
-        _goals.Add(simpleGoal);
-        _goals.Add(checklistGoal);
-        _goals.Add(eternalGoal);
 
-        // Simulate some events
-        simpleGoal.RecordEvent();
-        checklistGoal.RecordEvent();
-        checklistGoal.RecordEvent();
-        checklistGoal.RecordEvent();
-        checklistGoal.RecordEvent();
-        checklistGoal.RecordEvent(); // This should mark the checklist goal as complete and give bonus points
-
-        _score += simpleGoal.GetPoints();
-        _score += checklistGoal.GetPoints()* 5 + checklistGoal.GetPoints(); // Accumulating points including bonus
-
-        // Check achievements
-        CheckAchievements();
-    }
-
-    
 }
