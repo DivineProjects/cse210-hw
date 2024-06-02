@@ -6,9 +6,7 @@ class GoalManager
 {
     private List<Goal> _goals;
     private int _score;
-    // private List<Goal> _goals;
     private List<Achievement> _achievements;
-    // private int _score;
     private int _level;
     private int _pointsToNextLevel;
 
@@ -87,7 +85,6 @@ class GoalManager
     {
         Console.WriteLine($"Your current score: {_score}");
         Console.WriteLine($"Player's current level: {_level}");
-        // Console.WriteLine($"Points to next level: {_pointsToNextLevel - _score}");
     }
 
     private void ListGoalNames()
