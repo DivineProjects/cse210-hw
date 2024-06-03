@@ -8,6 +8,14 @@ public class Address
     private string _stateProvince; 
     private string _country;
     //constructor
+    public Address()
+    {
+        _street = "";
+        _city = "";
+        _stateProvince = "";
+        _country = "";
+    }
+
     public Address(string street, string city, string stateProvince, string country)
     {
         _street = street;
@@ -41,5 +49,12 @@ public class Address
     {
         return $"{_street}\n{_city}, {_stateProvince}\n{_country}";
     }
+
+    // Method to determine if the address is in the USA
+    public bool IsInUSA()
+    {
+        return _country.ToLower() == "usa" || _country.ToLower() == "united states";
+    }
+    
 
 }
