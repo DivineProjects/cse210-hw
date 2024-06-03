@@ -41,9 +41,9 @@ public class Customer
         return _address;
     }
 
-    public void DisplayCustomerInfo()
+    public string GetCustomerInfo()
     {
-        Console.WriteLine($"Name: {_name} \nAddress: {_address.GetAddress()}");
+        return $"Name: {_name} \n{_address.GetAddress()}";
     }
 
 }

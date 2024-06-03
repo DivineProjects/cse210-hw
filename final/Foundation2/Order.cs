@@ -38,23 +38,30 @@ public class Order
     // Method to generate the packing label
     public string GeneratePackingLabel()
     {
-        StringBuilder packingLabel = new StringBuilder();
-        packingLabel.AppendLine("Packing Label:");
+        string packingLabel = "Packing Label:\n";
         foreach (var product in _productsList)
         {
-            packingLabel.AppendLine($"Name: {product.GetProductName()}, Product ID: {product.GetProductId()}");
+            packingLabel += $"Product Name: {product.GetProductName()}, Product ID: {product.GetProductId()}\n";
         }
-        return packingLabel.ToString();
+        return packingLabel;
     }
+
+    // // Method to generate the shipping label
+    // public string GenerateShippingLabel()
+    // {
+    //     StringBuilder shippingLabel = new StringBuilder();
+    //     shippingLabel.AppendLine("Shipping Label:");
+    //     shippingLabel.AppendLine($"Name: {_customer.GetName()}");
+    //     shippingLabel.AppendLine(_customer.GetAddress().GetAddress());
+    //     return shippingLabel.ToString();
+    // }
 
     // Method to generate the shipping label
     public string GenerateShippingLabel()
     {
-        StringBuilder shippingLabel = new StringBuilder();
-        shippingLabel.AppendLine("Shipping Label:");
-        shippingLabel.AppendLine($"Name: {_customer.GetName()}");
-        shippingLabel.AppendLine(_customer.GetAddress().GetAddress());
-        return shippingLabel.ToString();
+        string shippingLabel = "Shipping Label:\n";
+        shippingLabel += _customer.GetCustomerInfo();
+        return shippingLabel;
     }
 
 

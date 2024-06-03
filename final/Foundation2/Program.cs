@@ -4,56 +4,48 @@ class Program
 {
     static void Main(string[] args)
     {
-       // Create a new address object
-            Address myAddress = new Address("123 Main St", "Springfield", "IL", "USA");
-
-            // Create a new customer object
-            Customer myCustomer = new Customer("John Doe", myAddress);
-
-            // Display customer details
-            Console.WriteLine("Customer Details:");
-            myCustomer.DisplayCustomerInfo();
-
-            // Check if the customer lives in the USA
-            Console.WriteLine("\nDoes the customer live in the USA?");
-            Console.WriteLine(myCustomer.LivesInUSA() ? "Yes" : "No");
-
-            // Modify the address and update the customer
-            Address newAddress = new Address("456 Elm St", "Chicago", "IL", "Canada");
-            myCustomer.SetAddress(newAddress);
-
-            // Display updated customer details
-            Console.WriteLine("\nUpdated Customer Details:");
-            myCustomer.DisplayCustomerInfo();
-
-            // Check if the updated address is in the USA
-            Console.WriteLine("\nDoes the customer live in the USA?");
-            Console.WriteLine(myCustomer.LivesInUSA() ? "Yes" : "No");
-
+        Console.Clear();
+        //------------ FIRST CUSTOMER ORDER ---------------------------------------
+        Console.WriteLine("\n------------ FIRST CUSTOMER ORDER ---------------------------------------");
         // Create a new address object
-            // Address myAddress = new Address("123 Main St", "Springfield", "IL", "USA");
+        Address address = new Address("60 River St", "Sweet Valley", "NY", "USA");
+        // Create a new customer object
+        Customer customer = new Customer("John Doe", address);
+        // Create a new order object
+        Order order = new Order(customer);
+        // Create Products
+        Product product1 = new Product("Dress", "564553", 50F);
+        Product product2 = new Product("Perfume", "154334", 100F);
+        // Add products to the order
+        order.SetOrderProduct(product1);
+        order.SetOrderProduct(product2);
+        // Display the total cost of the order
+        Console.WriteLine($"Total Cost: ${order.CalculateTotalCost()}");
+        // Generate and display the packing label
+        Console.WriteLine(order.GeneratePackingLabel());
+        // Generate and display the shipping label
+        Console.WriteLine(order.GenerateShippingLabel());
+        //=======================================================================
 
-            // Create a new customer object
-            // Customer myCustomer = new Customer("John Doe", myAddress);
 
-            // Create a new order object
-            Order myOrder = new Order(myCustomer);
 
-            // Add products to the order
-            Product product1 = new Product("Laptop", "12345", 999.99F);
-            Product product2 = new Product("Mouse", "67890", 49.99F);
-            myOrder.SetOrderProduct(product1);
-            myOrder.SetOrderProduct(product2);
-
-            // Display the total cost of the order
-            Console.WriteLine($"Total Cost: ${myOrder.CalculateTotalCost()}");
-
-            // Generate and display the packing label
-            Console.WriteLine("\nPacking Label:");
-            Console.WriteLine(myOrder.GeneratePackingLabel());
-
-            // Generate and display the shipping label
-            Console.WriteLine("\nShipping Label:");
-            Console.WriteLine(myOrder.GenerateShippingLabel());
+        //------------------ SECOND CUSTOMER ORDER -------------------------------
+        Console.WriteLine("\n------------ SECOND CUSTOMER ORDER ---------------------------------------");
+        Address address2 = new Address("19 Fort St", "Bulawayo", "BYO", "Zimbabwe");
+        Customer customer2 = new Customer("Tani Dube", address2);
+        // Create a new order object
+        Order order2 = new Order(customer2);  
+        // Create Products
+        Product product3 = new Product("Book", "6789043", 50F);
+        Product product4 = new Product("Bag", "565675", 100F);
+        // Add products to the order
+        order2.SetOrderProduct(product3);
+        order2.SetOrderProduct(product4);
+        // Display the total cost of the order
+        Console.WriteLine($"Total Cost: ${order2.CalculateTotalCost()}");
+        // Generate and display the packing label
+        Console.WriteLine(order2.GeneratePackingLabel());
+        // Generate and display the shipping label
+        Console.WriteLine(order2.GenerateShippingLabel());
     }
 }

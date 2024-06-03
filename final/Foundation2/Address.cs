@@ -47,7 +47,7 @@ public class Address
     // methods
     public string GetAddress()
     {
-        return $"{_street}\n{_city}, {_stateProvince}\n{_country}";
+        return $"Steet: {_street}\nCity: {_city}, {_stateProvince}\nCountry: {_country}";
     }
 
     // Method to determine if the address is in the USA
