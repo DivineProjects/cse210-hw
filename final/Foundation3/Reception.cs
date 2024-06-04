@@ -13,6 +13,6 @@ public class Reception: Event
 
     public void DisplayReceptionDetails()
     {
-        Console.WriteLine($"Email: {_rsvpEmail} \n{GetEventInfo()}");
+        Console.WriteLine($"Type: Reception\nRSVP: Email: {_rsvpEmail} \n{GetEventInfo()}");
     }
 }

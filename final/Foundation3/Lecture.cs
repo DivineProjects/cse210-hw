@@ -23,6 +23,6 @@ public class Lecture : Event
 
     public void DisplayLectureDetails()
     {
-        Console.WriteLine($"Speaker Name: {_speakerName} \n{GetEventInfo()} \nCapacity: {_capacity}");
+        Console.WriteLine($"Type: Lecture\nSpeaker : {_speakerName} \n{GetEventInfo()} \nCapacity: {_capacity}");
     }
 }
