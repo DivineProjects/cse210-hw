@@ -46,15 +46,6 @@ public class Order
         return packingLabel;
     }
 
-    // // Method to generate the shipping label
-    // public string GenerateShippingLabel()
-    // {
-    //     StringBuilder shippingLabel = new StringBuilder();
-    //     shippingLabel.AppendLine("Shipping Label:");
-    //     shippingLabel.AppendLine($"Name: {_customer.GetName()}");
-    //     shippingLabel.AppendLine(_customer.GetAddress().GetAddress());
-    //     return shippingLabel.ToString();
-    // }
 
     // Method to generate the shipping label
     public string GenerateShippingLabel()
