@@ -8,12 +8,12 @@ public class Event
     private DateTime _date;
     private Address _address;
 
-     // Constructor
+    // Constructor
     public Event(string title, string description, DateTime dateTime, Address address)
     {
         _title = title;
         _description = description;
-        _date= dateTime;
+        _date = dateTime;
         _address = address;
     }
 
@@ -33,14 +33,11 @@ public class Event
         return _date;
     }
 
-    public string GetAddress()
-    {
-        return _address;    
-    }
 
+    
     public string GetEventInfo()
     {
-        return $"Title: {_title} \nDescription: {_description}\nDate: {_date} \nAddress: {_address}";
+        return $"Title: {_title} \nDescription: {_description}\nDate: {_date} \nAddress: {_address.GetFullAddress()}";
     }
 
 }

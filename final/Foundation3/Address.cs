@@ -1,11 +1,11 @@
 using System;
 
-class Address
+public class Address
 {
     private string _street;
     private string _city;
     private string _state;
-    private string _countryip;
+    private string _country;
 
     public Address(string street, string city, string state, string country)
     {
@@ -15,7 +15,7 @@ class Address
         _country = country;
     }
 
-    public override string ToString()
+    public string GetFullAddress()
     {
         return $"\n{_street}\n{_city} \n{_state} \n{_country}";
     }
