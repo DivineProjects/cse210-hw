@@ -6,10 +6,10 @@ public class Event
     private string _title;
     private string _description;
     private DateTime _date;
-    private string _address;
+    private Address _address;
 
      // Constructor
-    public Event(string title, string description, DateTime dateTime, string address)
+    public Event(string title, string description, DateTime dateTime, Address address)
     {
         _title = title;
         _description = description;

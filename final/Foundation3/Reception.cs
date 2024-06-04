@@ -6,7 +6,7 @@ public class Reception: Event
 
     private string _rsvpEmail;
     // Constructor
-    public Reception(string rsvpEmail, string title, string description, DateTime dateTime, string address) : base(title, description, dateTime, address)
+    public Reception(string rsvpEmail, string title, string description, DateTime dateTime, Address address) : base(title, description, dateTime, address)
     {
         _rsvpEmail = rsvpEmail;
     }

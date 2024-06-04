@@ -12,6 +12,6 @@ public class Outdoor: Event
 
     public string GetOutDoorDetails()
     {
-        return $"\nType: Outdoor Gathering\nWeather Forecast: {_weatherForecast}";
+        return $"\nType: Outdoor Gathering\nWeather Forecast: {_weatherForecast} {GetEventInfo()}";
     }
 }
