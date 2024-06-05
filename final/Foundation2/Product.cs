@@ -15,9 +15,9 @@ public class Product
         _quantity = 0;
     }
 
-    public int SetProductQuantity(int quantity)
+    public void SetProductQuantity(int quantity)
     {
-        return _quantity = quantity;
+        _quantity = quantity;
     }
 
     public string GetProductName()
